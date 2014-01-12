@@ -435,7 +435,8 @@ function dcplot(frame, groupname, definition) {
         // abstract this into a plugin - this is RCloud-specific (rserve.js)
         function get_levels(dim) {
             var levels = null;
-            if(_.isFunction(dim)) levels = dim.attrs.r_attributes.levels;
+            if(_.isFunction(dim))
+                levels = dim.attrs.r_attributes.levels;
             else if(_.has(dims, dim) && mhas(accessor(dims[dim]), 'attrs', 'r_attributes', 'levels'))
                 levels = accessor(dims[dim]).attrs.r_attributes.levels;
             return levels;
