@@ -1,0 +1,42 @@
+{
+  "name": "dcplot",
+  "version": "0.1",
+  "license": "MIT",
+  "copyright": "2014",
+  "description": "A terse and minimal wrapper for dc.js",
+  "keywords": [
+    "visualization",
+    "svg",
+    "animation",
+    "canvas",
+    "chart",
+    "dimensional",
+    "crossfilter",
+    "d3",
+    "dc"
+  ],
+  "homepage": "http://att.github.io/dcplot.js/",
+  "bugs": "https://github.com/att/dcplot.js/issues",
+  "author": {
+    "name": "Gordon Woodhull"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dc-js/dc.js.git"
+  },
+  "dependencies": {
+    "crossfilter": "1.x",
+    "d3": "3.x",
+    "dc": "~1.7"
+  },
+  "npmName": "dcplot",
+  "npmFileMap": [
+    {
+      "basePath": "/",
+      "files": [
+        "dcplot.js",
+        "dataframe.js"
+      ]
+    }
+  ]
+}
