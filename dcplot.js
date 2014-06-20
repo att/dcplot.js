@@ -316,7 +316,7 @@
                     return filter.toPrecision(4);
             }
             else return _psv(filter);
-        }
+        };
 
         dcplot.format_error = function(e) {
             var tab;
