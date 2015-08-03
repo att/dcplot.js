@@ -751,14 +751,8 @@
                         }
                     },
                     color: function() {
-                        // i am cool with dc.js's color accessor
                         if(_.has(defn, 'color'))
                             chart.colorAccessor(key_value(accessor(defn.color)));
-                        // however i don't understand why dc chooses to use a
-                        // "color calculator" when a d3 scale seems like it ought
-                        // to serve the purpose. so just plug a d3 scale into colors
-                        // and override the calculator to use it
-                        // also default to category10 which seems better for discrete colors
 
                         var scale = defn['color.scale'];
                         if(_.has(defn, 'color.domain'))
@@ -766,7 +760,6 @@
                         if(_.has(defn, 'color.range'))
                             scale.range(defn['color.range']);
                         chart.colors(scale);
-                        chart.colorCalculator(function(x) { return chart.colors()(x); });
                     },
                     stackable: function() {
                         if(_.has(defn, 'stack') && _.has(defn, 'stack.levels')) {
