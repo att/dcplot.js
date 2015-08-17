@@ -1,6 +1,6 @@
 {
   "name": "dcplot",
-  "version": "0.1",
+  "version": "0.2.0",
   "license": "MIT",
   "copyright": "2014",
   "description": "A terse and minimal wrapper for dc.js",
@@ -27,7 +27,7 @@
   "dependencies": {
     "crossfilter": "1.x",
     "d3": "3.x",
-    "dc": "~1.7"
+    "dc": "~2.0.0-beta"
   },
   "npmName": "dcplot",
   "npmFileMap": [
