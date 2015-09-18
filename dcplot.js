@@ -1,7 +1,7 @@
 /*
  dcplot: a minimal interface to dc.js with ggplot-like defaulting
 
- version: 0.3.0
+ version: 0.3.1
 
  takes a description in json+function format describing crossfilter dimensions and groups,
  and charts.  returns the resulting charts in a map.
@@ -200,11 +200,13 @@
                 'x.round': {required: false},
                 'x.elastic': {required: false},
                 'x.padding': {required: false},
+                'x.label': {required: false},
                 // likewise
                 'y.scale': {required: false},
                 'y.domain': {required: false},
                 'y.elastic': {required: false},
                 'y.padding': {required: false},
+                'y.label': {required: false},
                 gridLines: {required: false}, // horizontal and/or vertical
                 brush: {required: false}
                 // etc...
@@ -794,6 +796,8 @@
                             chart.elasticX(defn['x.elastic']);
                         if(_.has(defn, 'x.padding'))
                             chart.xAxisPadding(defn['x.padding']);
+                        if(_.has(defn, 'x.label'))
+                            chart.xAxisLabel(defn['x.label']);
 
                         if(_.has(defn, 'y.scale')) {
                             var ytrans = defn['y.scale'];
@@ -805,6 +809,8 @@
                             chart.elasticY(defn['y.elastic']);
                         if(_.has(defn, 'y.padding'))
                             chart.yAxisPadding(defn['y.padding']);
+                        if(_.has(defn, 'y.label'))
+                            chart.yAxisLabel(defn['y.label']);
 
                         if(_.has(defn, 'gridLines')) {
                             var lines = defn.gridLines;
