@@ -1,6 +1,8 @@
 /* an attempt to wrap dataframe access in an abstract
  interface that should work for other data too (?)
  note: test on array-of-records data!
+
+ this is part of the dcplot.js library
  */
 (function() {
     var dataframe = {
