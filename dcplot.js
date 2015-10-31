@@ -1,7 +1,7 @@
 /*
  dcplot: a minimal interface to dc.js with ggplot-like defaulting
 
- version: 0.3.1
+ version: 0.3.2
 
  takes a description in json+function format describing crossfilter dimensions and groups,
  and charts.  returns the resulting charts in a map.
