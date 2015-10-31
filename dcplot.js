@@ -1,7 +1,7 @@
 /*
  dcplot: a minimal interface to dc.js with ggplot-like defaulting
 
- version: 0.3.0
+ version: 0.3.1
 
  takes a description in json+function format describing crossfilter dimensions and groups,
  and charts.  returns the resulting charts in a map.
@@ -1003,7 +1003,8 @@
 
             dc.renderAll(groupname);
 
-            return {crossfilter: ndx, dimensions: dimensions, groups: groups, charts: charts};
+            return {dataframe: frame, crossfilter: ndx,
+                    dimensions: dimensions, groups: groups, charts: charts};
         }
         return dcplot;
     }
