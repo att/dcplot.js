@@ -1,8 +1,8 @@
 {
   "name": "dcplot",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
-  "copyright": "2014",
+  "copyright": "2015",
   "description": "A terse and minimal wrapper for dc.js",
   "keywords": [
     "visualization",
@@ -28,6 +28,26 @@
     "crossfilter": "1.x",
     "d3": "3.x",
     "dc": "~2.0.0-beta"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~0.11.2",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-gh-pages": "~0.10.0",
+    "grunt-jscs": "~2.1.0",
+    "grunt-jsdoc-to-markdown": "~1.1.1",
+    "grunt-shell": "~1.1.1",
+    "load-grunt-tasks": "~3.2.0",
+    "time-grunt": "~1.2.1"
+  },
+  "scripts": {
+    "test": "grunt test"
   },
   "npmName": "dcplot",
   "npmFileMap": [
