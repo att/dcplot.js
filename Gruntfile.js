@@ -57,9 +57,8 @@ module.exports = function (grunt) {
                     '<%= conf.src %>/**/*.js',
                     '!<%= conf.src %>/{banner,footer}.js',
                     '<%= conf.spec %>/**/*.js',
-                    'Gruntfile.js',
-                    'grunt/*.js',
-                    '<%= conf.web %>/stock.js'],
+                    'Gruntfile.js'
+                ],
                 options: {
                     config: '.jscsrc'
                 }
@@ -70,10 +69,7 @@ module.exports = function (grunt) {
                 src: [
                     '<%= conf.src %>/**/*.js',
                     '!<%= conf.src %>/{banner,footer}.js',
-                    '<%= conf.spec %>/**/*.js',
-                    'Gruntfile.js',
-                    'grunt/*.js',
-                    '<%= conf.web %>/stock.js'
+                    'Gruntfile.js'
                 ],
                 options: {
                     jshintrc: '.jshintrc'
@@ -185,7 +181,7 @@ module.exports = function (grunt) {
     grunt.registerTask('coverage', ['build', 'jasmine:coverage']);
     grunt.registerTask('ci', ['test', 'jasmine:specs:build', 'connect:server', 'saucelabs-jasmine']);
     grunt.registerTask('ci-pull', ['test', 'jasmine:specs:build', 'connect:server']);
-    grunt.registerTask('lint', ['jshint', 'jscs']);
+    grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('default', ['build', 'shell:hooks']);
     grunt.registerTask('jsdoc', ['build', 'jsdoc2md', 'watch:jsdoc2md']);
 };
