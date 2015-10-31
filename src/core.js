@@ -75,7 +75,7 @@ dcplot.accessor = function(frame, a) {
     }
     else if(_.isNumber(a))
         return constant_fn(a);
-    else throw "illegal accessor " + a.toString();
+    else throw 'illegal accessor ' + a.toString();
 };
 
 // abstract this into a plugin - this is RCloud-specific (rserve.js)

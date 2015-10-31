@@ -25,17 +25,20 @@ function parents_first_traversal(map, iter, callback) {
     if(curr[callback])
         curr[callback].apply(curr, rest);
 }
+
+/*
 function parents_last_traversal(map, iter, callback) {
     if(!(iter in map))
         throw 'unknown chart type ' + iter;
     var rest = Array.prototype.slice.call(arguments, 3);
+    var curr = map[iter];
     if(curr[callback])
         curr[callback].apply(curr, rest);
-    var curr = map[iter];
     if('parents' in curr)
         for(var i = 0; i < curr.parents.length; ++i)
             parents_last_traversal.apply(null, [map, curr.parents[i], callback].concat(rest));
 }
+*/
 
 // defaults
 dcplot.default_definition = function(definition) {
@@ -89,7 +92,8 @@ dcplot.check_group_attrs = function(definition, name, defn) {
 // check logic errors
 dcplot.check_dimension_logic = function(definition, name, defn) {
     // nothing (yet?)
-}
+};
+
 dcplot.check_group_logic = function(definition, name, defn, dims) {
     var errors = [];
     if(!_.has(dims, defn.dimension))
@@ -259,7 +263,7 @@ function dcplot(frame, groupname, definition, chart_program) {
         if(!chart_program[defn.type].supported)
             throw 'unsupported chart type "' + defn.type + '"';
         if(!chart_program[defn.type].concrete)
-            throw "can't create abstract chart type \"" + defn.type + '"';
+            throw 'can\'t create abstract chart type "' + defn.type + '"';
     }
 
     // fill in anything easily defaultable (will not happen in incremental mode)
@@ -284,7 +288,7 @@ function dcplot(frame, groupname, definition, chart_program) {
     if(errors.length)
         throw errors;
 
-    console.log("dcplot charts definition:");
+    console.log('dcplot charts definition:');
     console.log(definition);
 
     // create / fill stuff in
