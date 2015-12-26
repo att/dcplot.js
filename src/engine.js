@@ -1,3 +1,5 @@
+/* global dcplot, _ */
+/* exported dcplot */
 /*
  many stages of filling in the blanks for dimensions, groups, and charts
 

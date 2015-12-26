@@ -1,3 +1,4 @@
+/* global dcplot */
 // todo? the groupvalue function could access subfields of the dimension value?
 dcplot.group = {
     identity: function(dim) { return dim.group(); },

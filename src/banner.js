@@ -1,2 +1,2 @@
-(function() { function _dcplot(dc, crossfilter) {
+(function() { function _dcplot(dc, crossfilter, _) {
 'use strict';

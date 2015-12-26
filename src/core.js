@@ -1,3 +1,4 @@
+/* global dcplot, _, $ */
 dcplot.version = '<%= conf.pkg.version %>';
 
 // dc.js formats all numbers as ints - override

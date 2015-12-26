@@ -5,10 +5,11 @@ dcplot.crossfilter = crossfilter;
 
 return dcplot;}
     if(typeof define === "function" && define.amd) {
-        define(["dc", "crossfilter"], _dcplot);
+        define(["dc", "crossfilter", "underscore"], _dcplot);
     } else if(typeof module === "object" && module.exports) {
         var _dc = require('dc');
         var _crossfilter = require('crossfilter');
+        var _ = require('underscore');
         // When using npm + browserify, 'crossfilter' is a function,
         // since package.json specifies index.js as main function, and it
         // does special handling. When using bower + browserify,
@@ -17,9 +18,9 @@ return dcplot;}
         if (typeof _crossfilter !== "function") {
             _crossfilter = _crossfilter.crossfilter;
         }
-        module.exports = _dcplot(_dc, _crossfilter);
+        module.exports = _dcplot(_dc, _crossfilter, _);
     } else {
-        this.dc = _dc(dc, crossfilter);
+        this.dc = _dc(dc, crossfilter, _);
     }
 }
 )();

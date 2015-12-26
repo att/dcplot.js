@@ -1,3 +1,4 @@
+/* global dcplot, _ */
 // warning: don't put method calls for defaults which must be constructed each time!
 dcplot.dc_chart_program = {
     base: {
