@@ -51,19 +51,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        jscs: {
-            source: {
-                src: [
-                    '<%= conf.src %>/**/*.js',
-                    '!<%= conf.src %>/{banner,footer}.js',
-                    '<%= conf.spec %>/**/*.js',
-                    'Gruntfile.js'
-                ],
-                options: {
-                    config: '.jscsrc'
-                }
-            }
-        },
         jshint: {
             source: {
                 src: [
