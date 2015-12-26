@@ -17,7 +17,8 @@ dc.utils.printSingleValue = function(filter) {
 
 dcplot.format_error = function(e) {
     var d3 = dc.d3;
-    var error_report = d3.select(document.createElement('div'))
+    var error_report = d3.select(document.createElement('div'));
+    error_report
             .append('p').text('dcplot errors!');
     if(_.isArray(e)) { // expected exception: input error
         var tab = error_report.append('table');
