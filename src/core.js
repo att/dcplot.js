@@ -1,4 +1,4 @@
-/* global dcplot, _, $ */
+/* global dcplot, _ */
 dcplot.version = '<%= conf.pkg.version %>';
 
 // dc.js formats all numbers as ints - override
@@ -16,32 +16,35 @@ dc.utils.printSingleValue = function(filter) {
 };
 
 dcplot.format_error = function(e) {
-    var tab;
+    var d3 = dc.d3;
+    var error_report = d3.select(document.createElement('div'))
+            .append('p').text('dcplot errors!');
     if(_.isArray(e)) { // expected exception: input error
-        tab = $('<table/>');
-        $.each(e, function(i) {
-            var err = e[i], formatted_errors = $('<td/>');
-            if(_.isString(err.errors))
-                formatted_errors.text(err.errors);
-            else if(_.isArray(err.errors))
-                $.each(err.errors, function(e) {
-                    formatted_errors.append($('<p/>').text(err.errors[e]));
-                });
-            else formatted_errors.text(err.errors.message.toString());
-            var name = err.name.replace(/_\d*_\d*$/, '');
-            tab.append($('<tr valign=top/>').
-                       append($('<td/>').text(err.type)).
-                       append($('<td/>').text(name)).
-                       append(formatted_errors)
-                      );
-        });
+        var tab = error_report.append('table');
+        var tr = tab.selectAll('tr')
+                .data(e).enter().append('tr')
+                .attr('valign', 'top');
+        tr
+            .append('td')
+            .text(function(d) {
+                return d.type;
+            });
+        tr
+            .append('td').text(function(d) {
+                return d.name.replace(/_\d*_\d*$/, '');
+            });
+        var tderr = tr.append('td');
+        tderr
+            .selectAll('p').data(function(d) {
+                return _.isArray(d.errors) ? d.errors : d.errors.toString();
+            }).enter().append('p')
+            .text(function(d) {
+                return d;
+            });
     }
     else // unexpected exception: probably logic error
-        tab = $('<p/>').text(e.toString());
-    var error_report = $('<div/>').
-            append($('<p/>').text('dcplot errors!')).
-            append(tab);
-    return error_report;
+        error_report.append('p').text(e.toString());
+    return error_report.node();
 };
 
 
