@@ -101,7 +101,7 @@ dcplot.accessor = function(frame, a) {
     }
     else if(_.isNumber(a))
         return constant_fn(a);
-    else throw "illegal accessor " + a.toString();
+    else throw 'illegal accessor ' + a.toString();
 };
 
 // abstract this into a plugin - this is RCloud-specific (rserve.js)
@@ -284,17 +284,20 @@ function parents_first_traversal(map, iter, callback) {
     if(curr[callback])
         curr[callback].apply(curr, rest);
 }
+
+/*
 function parents_last_traversal(map, iter, callback) {
     if(!(iter in map))
         throw 'unknown chart type ' + iter;
     var rest = Array.prototype.slice.call(arguments, 3);
+    var curr = map[iter];
     if(curr[callback])
         curr[callback].apply(curr, rest);
-    var curr = map[iter];
     if('parents' in curr)
         for(var i = 0; i < curr.parents.length; ++i)
             parents_last_traversal.apply(null, [map, curr.parents[i], callback].concat(rest));
 }
+*/
 
 // defaults
 dcplot.default_definition = function(definition) {
@@ -348,7 +351,8 @@ dcplot.check_group_attrs = function(definition, name, defn) {
 // check logic errors
 dcplot.check_dimension_logic = function(definition, name, defn) {
     // nothing (yet?)
-}
+};
+
 dcplot.check_group_logic = function(definition, name, defn, dims) {
     var errors = [];
     if(!_.has(dims, defn.dimension))
@@ -518,7 +522,7 @@ function dcplot(frame, groupname, definition, chart_program) {
         if(!chart_program[defn.type].supported)
             throw 'unsupported chart type "' + defn.type + '"';
         if(!chart_program[defn.type].concrete)
-            throw "can't create abstract chart type \"" + defn.type + '"';
+            throw 'can\'t create abstract chart type "' + defn.type + '"';
     }
 
     // fill in anything easily defaultable (will not happen in incremental mode)
@@ -543,7 +547,7 @@ function dcplot(frame, groupname, definition, chart_program) {
     if(errors.length)
         throw errors;
 
-    console.log("dcplot charts definition:");
+    console.log('dcplot charts definition:');
     console.log(definition);
 
     // create / fill stuff in
@@ -709,13 +713,13 @@ dcplot.dc_chart_program = {
                 var levels = defn['stack.levels'];
 
                 // Change reduce functions to filter on stack levels
-                for(var s = 0; s<defn['stack.levels'].length; s++) {
-                    var newName = defn.group+defn['stack.levels'][s];
+                for(var s = 0; s<levels.length; s++) {
+                    var newName = defn.group+levels[s];
                     var newGroupDefn = _.clone(groups[defn.group]);
 
                     // Special treatment for counts, otherwise generic filter wrapper
                     if(newGroupDefn.reduce === dcplot.reduce.count)
-                        newGroupDefn.reduce = dcplot.reduce.countFilter(defn.stack,defn['stack.levels'][s]);
+                        newGroupDefn.reduce = dcplot.reduce.countFilter(defn.stack,levels[s]);
                     else newGroupDefn.reduce = dcplot.reduce.filter(newGroupDefn.reduce,defn.stack,defn['stack.levels'][s]);
 
                     groups[newName] = newGroupDefn;
@@ -914,7 +918,7 @@ dcplot.dc_chart_program = {
             // optionally color the bars when ordinal and not stacked or one stack
             if(_.has(defn,'x.ordinal') && defn['x.ordinal'] && defn['color.x'] && this.one_stack(defn)) {
                 object.chart.renderlet(function(chart) {
-                    chart.selectAll("rect.bar").style('fill', function(d,i) {
+                    chart.selectAll('rect.bar').style('fill', function(d,i) {
                         if(d3.select(this).classed(dc.constants.DESELECTED_CLASS))
                             return null;
                         else return chart.colors()(d.x);
@@ -924,10 +928,10 @@ dcplot.dc_chart_program = {
             else if(!this.one_stack(defn)) {
                 // dc.js does not automatically color the stacks different colors (!)
                 object.chart.renderlet(function(chart) {
-                    chart.selectAll("g."+dc.constants.STACK_CLASS)
+                    chart.selectAll('g.'+dc.constants.STACK_CLASS)
                         .each(function(d,i) {
                             var stack = defn['stack.levels'][i];
-                            d3.select(this).selectAll("rect.bar")
+                            d3.select(this).selectAll('rect.bar')
                                 .style('fill', function(d,i) {
                                     if(d3.select(this).classed(dc.constants.DESELECTED_CLASS))
                                         return null;
@@ -935,7 +939,7 @@ dcplot.dc_chart_program = {
                                 })
                                 .select('title')
                                 .text(function(d,i) {
-                                    return stack + ", " + d3.select(this).text();
+                                    return stack + ', ' + d3.select(this).text();
                                 });
                         });
                 });
@@ -1020,7 +1024,7 @@ dcplot.dc_chart_program = {
             var bad = _.find(defn.columns,
                              function(col) { return !frame.has(col); });
             if(bad)
-                throw bad + " not a valid column!";
+                throw bad + ' not a valid column!';
         },
         create: function(definition, object, groupname, frame, defn, dims, groups, errors) {
             object.chart.group(dcplot.accessor(frame, defn.dimension));
